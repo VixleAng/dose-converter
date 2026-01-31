@@ -468,6 +468,7 @@ export default function Page() {
                 <div className="text-sm font-semibold text-slate-800">Dose (mg)</div>
                 <div className="mt-3">
                   <Input
+                    className="mt-2 rounded-lg text-slate-900 placeholder:text-slate-500"
                     inputMode="decimal"
                     value={doseMg}
                     onChange={(e) => setDoseMg(e.target.value)}
@@ -475,14 +476,17 @@ export default function Page() {
                   />
                 </div>
 
-                <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+                <div className="mt-3 flex flex-wrap gap-2">
                   {doseQuick.map((d) => (
                     <button
                       key={d}
                       className={cn(
-                        "h-9 px-3 rounded-full border border-slate-200 bg-white text-sm hover:bg-slate-50 transition",
-                        "active:scale-[0.98]"
-                      )}
+                        "h-9 px-3 rounded-full border text-sm transition active:scale-[0.98] whitespace-nowrap",
+                        "bg-white text-slate-800 border-slate-400 shadow-sm hover:bg-slate-100",
+                        Number(doseMg) === Number(d)
+                      ? "bg-orange-500 text-white border-orange-500 shadow"
+                      : ""
+                    )}  
                       onClick={() => setDoseMg(String(d))}
                       type="button"
                     >
